@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kanji Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module">
+        import init, { search_kanji_by_strokes } from './pkg/kanji_searcher.js';
+    
+        async function run() {
+            await init();
+            console.log("WASM ready");
+
+            const response = await fetch('./kanji.json'); // fetch json
+            if (!response.ok) {
+            console.error("Failed to fetch JSON file:", response.statusText);
+            return;
+        }
+            const kanjiData = await response.json();
+            console.log("kanji.json loaded:", kanjiData);
+    
+            document.getElementById('strokeInput').addEventListener('input', async (event) => {
+                const strokeCount = parseInt(event.target.value, 10);
+                console.log(`Searching strokes: ${strokeCount}`);
+
+                if (!isNaN(strokeCount)) {
+                    const results = search_kanji_by_strokes(JSON.stringify(kanjiData), strokeCount);
+                    if (results.length === 0) {
+                        console.log("No results found");
+                        const resultsDiv = document.getElementById('results');
+                        resultsDiv.innerHTML = '<p>No results found</p>';
+                        return;
+                    }
+                    console.log("Search results:", results);
+                    displayResults(results);
+                }
+            });
+        }
+    
+        function displayResults(results) {
+            const kanjis = results;
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            kanjis.forEach(kanji => {
+                const div = document.createElement('div');
+
+                const kanjiHeader = document.createElement('h3');
+                kanjiHeader.textContent = `Kanji: ${kanji.Kanji}`;
+                div.appendChild(kanjiHeader);
+
+                const strokesPara = document.createElement('p');
+                strokesPara.textContent = `Strokes: ${kanji.Strokes}`;
+                div.appendChild(strokesPara);
+
+                const onPara = document.createElement('p');
+                onPara.textContent = `On: ${kanji['On within Joyo']}`;
+                div.appendChild(onPara);
+
+                const kunPara = document.createElement('p');
+                kunPara.textContent = `Kun: ${kanji['Kun within Joyo']}`;
+                div.appendChild(kunPara);
+
+                resultsDiv.appendChild(div);
+            });
+        }
+    
+        run();
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Kanji Searcher</h1>
+            <p>Search for Kanjis by stroke count</p>
+        </div>
+        <div class="input">
+            <input type="number" id="strokeInput" placeholder="Enter stroke count">
+        </div>
+        <div id="results" class="results"></div>
+    </div>
+</body>
+</html>
