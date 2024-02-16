@@ -24,35 +24,3 @@ pub fn search_kanji_by_strokes(kanji_data: &str, stroke_count: u32) -> JsValue {
         .collect();
     JsValue::from_serde(&filtered_kanjis).unwrap()
 }
-
-/* 
-// IMPOSSIBLE TO GET TEST TO WORK
-#[cfg(test)]
-wasm_bindgen_test_configure!(run_in_browser);
-#[wasm_bindgen_test]
-fn test_search_kanji_by_strokes() {
-    let kanji_data = r#"
-        [
-            {"Kanji": "一", "Strokes": 1, "On within Joyo": "イチ", "Kun within Joyo": "ひと"},
-            {"Kanji": "二", "Strokes": 2, "On within Joyo": "ニ", "Kun within Joyo": "ふた"},
-            {"Kanji": "三", "Strokes": 3, "On within Joyo": "サン", "Kun within Joyo": "み"},
-            {"Kanji": "門", "Strokes": 4, "On within Joyo": "モン", "Kun within Joyo": "かど"},
-            {"Kanji": "五", "Strokes": 5, "On within Joyo": "ゴ", "Kun within Joyo": "いつ"}
-        ]
-    "#;
-
-    // Test with a specific stroke count
-    let stroke_count = 3;  // Choose the stroke count to test
-
-    // Call the function to get the result
-    let result = search_kanji_by_strokes(kanji_data, stroke_count);
-    //let result_json = serde_json::to_string(&result).unwrap();
-
-    // Define the expected result
-    let expected_result_json = r#"
-        [{"Kanji":"三","Strokes":3,"On within Joyo":"サン","Kun within Joyo":"み"}]
-    "#;
-
-    //assert_eq!(result_json, expected_result_json);
-} 
-*/
