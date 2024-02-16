@@ -13,75 +13,76 @@ wasm_bindgen_test_configure!(run_in_browser);
 fn test_search_kanji_by_strokes() {
     let data_json = json!(
     [
-        {
-            "Kanji": "憶",
-            "Strokes": 16,
-            "Translation of Kun": "-",
-            "Translation of On": "think, remember"
-          },
-          {
-            "Kanji": "臆",
-            "Strokes": 17,
-            "Translation of Kun": "-",
-            "Translation of On": "timidity; breast, heart, mind"
-          },
-          {
-            "Kanji": "虞",
-            "Strokes": 13,
-            "Translation of Kun": "fear; anxiety; concern; uneasiness",
-            "Translation of On": "-"
-          },
-          {
-            "Kanji": "一",
-            "Strokes": 1,
-            "Translation of Kun": "one, a unit; the same; just; once",
-            "Translation of On": "one, a"
-          },
-          {
-            "Kanji": "乙",
-            "Strokes": 1,
-            "Translation of Kun": "-",
-            "Translation of On": "B, second; the latter; duplicate"
-          },    {
-            "Kanji": "遺",
-            "Strokes": 15,
-            "Translation of Kun": "-",
-            "Translation of On": "leave behind; bequeath; save, reserve"
-          },
-          {
-            "Kanji": "緯",
-            "Strokes": 16,
-            "Translation of Kun": "-",
-            "Translation of On": "woof; horizontal; left and right; parallels of latitude; latitude"
-          },
-          {
-            "Kanji": "域",
-            "Strokes": 11,
-            "Translation of Kun": "-",
-            "Translation of On": "region; limits; stage, level"
-          },
-          {
-            "Kanji": "育",
-            "Strokes": 8,
-            "Translation of Kun": "be raised, be brought up, grow, grow up; raise, rear, bring up",
-            "Translation of On": "be raised, be brought up, grow, grow up"
-          }
+      {
+      "Kanji": "春",
+      "Strokes": 9,
+      "Translation of Kun": "spring, springtime",
+      "Translation of On": "spring"
+      },
+      {
+        "Kanji": "瞬",
+        "Strokes": 18,
+        "Translation of Kun": "wink, twinkle, flicker",
+        "Translation of On": "wink, blink"
+      },
+      {
+        "Kanji": "旬",
+        "Strokes": 6,
+        "Translation of Kun": "-",
+        "Translation of On": "ten-day period. season (for specific products)"
+      },
+      {
+        "Kanji": "巡",
+        "Strokes": 6,
+        "Translation of Kun": "go around; in connection with, concering",
+        "Translation of On": "going around; circumference"
+      },
+      {
+        "Kanji": "盾",
+        "Strokes": 9,
+        "Translation of Kun": "shield, buckler, escutcheon; pretext",
+        "Translation of On": "shield, buckler, escutcheon; pretext"
+      },
+      {
+        "Kanji": "准",
+        "Strokes": 10,
+        "Translation of Kun": "-",
+        "Translation of On": "quasi-, semi-, associate"
+      },
+      {
+        "Kanji": "殉",
+        "Strokes": 10,
+        "Translation of Kun": "-",
+        "Translation of On": "die a martyr, follow (someone) by committing suicide; follow in resigning"
+      },
+      {
+        "Kanji": "純",
+        "Strokes": 10,
+        "Translation of Kun": "-",
+        "Translation of On": "purity, innocence; net (profit)"
+      },
+      {
+        "Kanji": "循",
+        "Strokes": 12,
+        "Translation of Kun": "-",
+        "Translation of On": "follow"
+      },
     ]).to_string();
 
     let testData_json = json!(
     [
-        {
-            "Kanji": "一",
-            "Strokes": 1,
-            "Translation of Kun": "one, a unit; the same; just; once",
-            "Translation of On": "one, a"
-          },
-          {
-            "Kanji": "乙",
-            "Strokes": 1,
-            "Translation of Kun": "-",
-            "Translation of On": "B, second; the latter; duplicate"
-          }
+      {
+        "Kanji": "純",
+        "Strokes": 10,
+        "Translation of Kun": "-",
+        "Translation of On": "purity, innocence; net (profit)"
+      },
+      {
+        "Kanji": "循",
+        "Strokes": 12,
+        "Translation of Kun": "-",
+        "Translation of On": "follow"
+      }
     ]);
 
     let testData: Vec<KanjiEntry> = serde_json::from_value(testData_json).unwrap();
